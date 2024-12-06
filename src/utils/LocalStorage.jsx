@@ -1,20 +1,21 @@
 
 
-const employees =[
+export const employees =[
   {
       "firstName": "Alice",
       "id": 1,
       "email": "alice@example.com",
       "password": "123",
       "taskCount": {
-          "active": 1,
+          "active": 0,
           "completed": 1,
           "failed": 0,
           "newTask": 1
       },
       "tasks": [
           {
-              "active": true,
+              "taskId": 1,
+              "active": false,
               "completed": false,
               "failed": false,
               "newTask": true,
@@ -23,7 +24,8 @@ const employees =[
               "taskDate": "2023-10-15",
               "category": "Work"
           },
-          {
+          {    
+              "taskId": 2,
               "active": false,
               "completed": true,
               "failed": false,
@@ -47,7 +49,8 @@ const employees =[
           "newTask": 2
       },
       "tasks": [
-          {
+          {   
+              "taskId": 1,
               "active": true,
               "completed": false,
               "failed": false,
@@ -58,6 +61,7 @@ const employees =[
               "category": "Development"
           },
           {
+            "taskId" : 2,
             "active": false,
             "completed": true,
             "failed": false,
@@ -67,7 +71,8 @@ const employees =[
             "taskDate": "2023-10-10",
             "category": "Work"
         },
-        {
+        {    
+            "taskId" : 3,
             "active": true,
             "completed": false,
             "failed": true,
@@ -91,7 +96,8 @@ const employees =[
           "newTask": 3
       },
       "tasks": [
-          {
+          {  
+              "taskId":1,
               "active": true,
               "completed": false,
               "failed": true,
@@ -101,7 +107,8 @@ const employees =[
               "taskDate": "2023-10-25",
               "category": "Work"
           },
-          {
+          { 
+            "taskId": 2,
             "active": false,
             "completed": true,
             "failed": false,
@@ -111,7 +118,8 @@ const employees =[
             "taskDate": "2023-10-05",
             "category": "Training"
         },
-        {
+        {  
+            "taskId" : 3,
             "active": true,
             "completed": false,
             "failed": false,
@@ -135,7 +143,8 @@ const employees =[
           "newTask": 2
       },
       "tasks": [
-          {
+          {  
+              "taskId": 1,
               "active": false,
               "completed": true,
               "failed": false,
@@ -145,7 +154,8 @@ const employees =[
               "taskDate": "2023-10-05",
               "category": "Training"
           },
-          {
+          {  
+            "taskId" : 2,
             "active": true,
             "completed": false,
             "failed": true,
@@ -155,7 +165,8 @@ const employees =[
             "taskDate": "2023-10-25",
             "category": "Work"
         },
-        {
+        {   
+            "taskId" : 3,
             "active": false,
             "completed": true,
             "failed": false,
@@ -179,7 +190,8 @@ const employees =[
           "newTask": 3
       },
       "tasks": [
-          {
+          {   
+             "taskId" : 1,
               "active": true,
               "completed": false,
               "failed": false,
@@ -189,7 +201,8 @@ const employees =[
               "taskDate": "2023-10-18",
               "category": "Development"
           },
-          {
+          {   
+              "taskId" : 2,
               "active": true,
               "completed": false,
               "failed": false,
@@ -199,7 +212,8 @@ const employees =[
               "taskDate": "2023-10-22",
               "category": "Client Relations"
           },
-          {
+          { 
+            "taskId" : 3,
             "active": true,
             "completed": false,
             "failed": false,
@@ -212,7 +226,7 @@ const employees =[
       ]
   }
 ]
-    const admins = [
+ export const admins = [
         {
             "id": 11,
             "firstName" : "Khansa",
@@ -228,17 +242,17 @@ const employees =[
     ] 
   
 
-    export const setLocalStorage = () =>{
-        localStorage.setItem('employees', JSON.stringify(employees))
-        localStorage.setItem('admins', JSON.stringify(admins))
-    }
-    export const getLocalStorage = () =>{
-      const employees =  JSON.parse(localStorage.getItem('employees'));
-      const admins = JSON.parse(localStorage.getItem('admins'));
+    // export const setLocalStorage = () =>{
+    //     localStorage.setItem('employees', JSON.stringify(employees))
+    //     localStorage.setItem('admins', JSON.stringify(admins))
+    // }
+    // export const getLocalStorage = () =>{
+    //   const employees =  JSON.parse(localStorage.getItem('employees'));
+    //   const admins = JSON.parse(localStorage.getItem('admins'));
        
-      // console.log(JSON.parse(adminData));
-      return({employees, admins});
-    }
+    //   // console.log(JSON.parse(adminData));
+    //   return({employees, admins});
+    // }
 
     
 

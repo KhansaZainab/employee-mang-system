@@ -5,17 +5,18 @@ import { AuthContext } from '../../context/AuthProvider';
 
 function CreateTask() {
   const [taskTitle, setTaskTitle] = useState('');
+  const [taskId, setTaskId] = useState('');
   const [taskDescription, setTaskDescription] = useState('');
   const [taskDate, setTaskDate] = useState('');
   const [category, setCategory] = useState('');
   const [assignto, setAssignto] = useState('');
   
   const [userData, setUserData] = useContext(AuthContext);
-  const [newTask, setNewTask] = useState({});
+  const [NewTask, setNewTask] = useState({});
   const submitHandler = (e)=>{
     e.preventDefault();
 
-    setNewTask({active:false, completed: false, failed:false,  newTask: true,taskTitle, taskDescription,taskDate,category, assignto, })
+    setNewTask({active:false, completed: false, failed:false,  newTask: true,taskTitle,taskId, taskDescription,taskDate,category, assignto })
     
     // const data = JSON.parse(localStorage.getItem('employees'))
     const data = userData
@@ -23,22 +24,23 @@ function CreateTask() {
     
     data.forEach(elem => {
       if(elem.firstName == assignto){
-        elem.tasks.push(newTask)
-        elem.taskCount.new+=1
+        elem.tasks.push(NewTask)
+        elem.taskCount.newTask+=1
         // console.log(elem);   
       }
     });
-    localStorage.setItem('employees', JSON.stringify(data));
+    // localStorage.setItem('employees', JSON.stringify(data));
     setUserData(data)
     console.log(data);
     
+    setTaskTitle('')
+    setTaskId('')
+    setTaskDescription('')
+    setAssignto('')
+    setCategory('')
+    setTaskDate('')
   }
-  //  setTaskTitle('')
-  //   setTaskDesc('')
-  //   setAssignto('')
-  //   setCategory('')
-  //   setDate('')
-
+  
   return (
     <>
      <form onSubmit={(e)=>submitHandler(e)} className="w-full flex items-start justify-between gap-5 bg-[#1C1C1C] mt-9 p-6 ">
@@ -50,6 +52,15 @@ function CreateTask() {
             onChange={(e)=>{
               setTaskTitle(e.target.value)}}
              type="text" placeholder="enter your task here" className="w-4/5 bg-transparent border-gray-200 border-[1px] rounded-md py-1 px-2 placeholder:text-gray-300"/>
+          </div>
+
+          <div className="flex flex-col text-start ">
+            <h3 className=" text-gray-300 mb-[1px]">Task Id</h3>
+            <input
+            value={taskId}
+            onChange={(e)=>{
+              setTaskId(e.target.value)}}
+             type="number" placeholder="enter your task here" className="w-4/5 bg-transparent border-gray-200 border-[1px] rounded-md py-1 px-2 placeholder:text-gray-300"/>
           </div>
 
           <div className="flex flex-col text-start ">

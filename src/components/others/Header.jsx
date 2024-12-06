@@ -10,7 +10,7 @@ function Header(props) {
   }
   return (
     <div className='flex justify-between items-start text-white'>
-        <h2 className='font-semibold text-lg'>Hi  <br/> <span>data.firstName👋 </span></h2>
+        <h2 className='font-semibold text-lg'>Hi  <br/> <span>props.data.firstName👋 </span></h2>
         <button onClick={LogOutUser} className='bg-red-600 text-white rounded-md px-4 py-2'>Log out</button>
       
     </div>

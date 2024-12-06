@@ -11,48 +11,56 @@ import { AuthContext } from "./context/AuthProvider";
 function App() {
   const [user, setUser] = useState(null);
   const [loggedInUserData, setLoggedInUserData] = useState(null)
+  const [loggedInAdminData, setLoggedInAdminData] = useState(null)
   const [userData, setUserData] = useContext(AuthContext);
-  console.log(userData);
+  const [loggedInUser, setLoggedInUser] = useState({})
+  // console.log(userData);
 
 useEffect(()=>{
-  const loggedInUser = localStorage.getItem("loggedInUser")
-  if(loggedInUser){
-    const useData = JSON.parse(loggedInUser)
-    console.log(useData);
-    
-    setUser(useData.role)
-    setLoggedInUserData(useData.data)
-    
+  // const loggedInUser = localStorage.getItem("loggedInUser")
+  // if(loggedInUser){
+  //   const useData = JSON.parse(loggedInUser)
+    // console.log(useData);
+    if(loggedInUser){
+      setUser(loggedInUser.role)
+      setLoggedInUserData(loggedInUser.data)
+    }
    
     // console.log(useData.role);
     // console.log(useData.data);
-  }
+  // }
 },[])
  
 
   const HandleLogin = (email, password) => {
-      if( 'admin1@example.com' == email && '123'== password){
+      if( email == 'admin1@example.com' && password == '123'){
         setUser("admin");
-        localStorage.setItem("loggedInUser",JSON.stringify({ role: "admin" }));
+        // setLoggedInAdminData(admin)
+        // localStorage.setItem("loggedInUser",JSON.stringify({ role: "admin" }));
+        setLoggedInUser({role: 'admin'})
+        console.log(loggedInUser);
       }else if (userData) {
       const employee = userData.find((e) => e.email == email && e.password == password);
         if (employee) {
         setUser("employee");
         setLoggedInUserData(employee);
         // console.log(employee);
-        localStorage.setItem("loggedInUser",JSON.stringify({ role: "employee", data : employee }));
-        console.log(loggedInUserData);
+        console.log(loggedInUser);
+        
+        setLoggedInUser({role:'employee', data: employee})
+        // localStorage.setItem("loggedInUser",JSON.stringify({ role: "employee", data : employee }));
+        console.log(loggedInUser);
       }
     } else {
       alert("Invalid Credentials")
     }
   };
   // HandleLogin('employee@me', '123');
-  console.log(loggedInUserData);
+  // console.log(loggedInUserData);
   return (
     <>
       {!user ? <Login HandleLogin={HandleLogin} /> : ""}
-      {user == "admin" ? <AdminDashboard changeUser={setUser}/> : (user == 'employee'? <EmployeeDashboard changeUser={setUser} data={loggedInUserData} /> : null)}
+      {user == "admin" ? <AdminDashboard changeUser={setUser} data={loggedInAdminData}/> : (user == 'employee'? <EmployeeDashboard changeUser={setUser} data={loggedInUserData} /> : null)}
     </>
   );
 }

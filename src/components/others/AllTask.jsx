@@ -24,7 +24,7 @@ function AllTask() {
             <h3 className= "w-1/5 text-yellow-300">{employee.taskCount.active}</h3>
             <h2 className="w-1/5 text-blue-500">{employee.taskCount.completed}</h2>
             <h2 className="w-1/5 text-red-500">{employee.taskCount.failed}</h2>
-            <h2 className="w-1/5 text-pink-500">{employee.taskCount.new}</h2>
+            <h2 className="w-1/5 text-pink-500">{employee.taskCount.newTask}</h2>
           </div>
           
         );
